@@ -15,10 +15,9 @@ ActiveAdmin.register Feedback do
       row :bug_happen
       row :avatar_file_name
       row :image do
-        #image_tag("#{Rails.root}/../shiba-web/public" + feedback.avatar.url)
+        image_tag(feedback.avatar.url(:square))
       end
       row :created_at
     end
   end
-
 end
