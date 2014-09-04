@@ -13,6 +13,8 @@ ActiveAdmin.register Feedback do
       row :email
       row :content
       row :bug_happen
+      row :purchase_record
+      row :purchase_number
       row :avatar_file_name
       row :image do
         image_tag(feedback.avatar.url(:square))

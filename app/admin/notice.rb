@@ -1,18 +1,21 @@
 ActiveAdmin.register Notice do
  menu label: 'Notices', parent: 'Operation'
   index  do  
-    column "開始時間",:start_at                  
+    column "活动设置时间",:set_time                  
     column "結束時間",:end_at     
-    column "活動是否存在",:enabled                 
+    column "显示时间",:show_time                 
     default_actions    
   end         
            
   form do |f|
-    f.inputs "活動是否結束" do
-      f.input :enabled
+    f.inputs "活動显示时间" do
+      f.input :show_time
     end
-    f.inputs "開始時間" do
-      f.input :start_at
+    f.inputs "活动标题" do
+      f.input :title
+    end
+    f.inputs "设置时间" do
+      f.input :set_time
     end
     f.inputs "結束時間" do
       f.input :end_at, value: (Time.now + 3600)
