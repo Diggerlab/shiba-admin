@@ -1,9 +1,11 @@
 ActiveAdmin.register Notice do
- menu label: 'Notices', parent: 'Operation'
+  permit_params :title, :published_at, :closed_at, :content_en, :content_zh, :content_jp, 
+  :content_tw, :admin_user_id
+  menu label: 'Notices', parent: 'Operation'
   index  do                   
     column "結束時間",:closed_at     
     column "显示时间",:published_at                 
-    default_actions    
+    actions    
   end         
            
   form do |f|
@@ -14,7 +16,7 @@ ActiveAdmin.register Notice do
       f.input :published_at
     end
     f.inputs "結束時間" do
-      f.input :closed_at, value: (Time.now + 3600)
+      f.input :closed_at
     end
     f.inputs "content_en" do
       f.kindeditor :content_en, :owner_id => current_admin_user.id, filterMode: false
