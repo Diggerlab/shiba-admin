@@ -8,7 +8,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: shiba
+  database: shiba_web
   pool: 5
   username: shiba
   password: shiba

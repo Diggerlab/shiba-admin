@@ -9,15 +9,20 @@ ActiveAdmin.register Feedback do
   end         
   show do |feedback|
     attributes_table do
-      row :user_code
+      row :uid
       row :email
       row :content
-      row :bug_happen
-      row :purchase_record
-      row :purchase_number
-      row :avatar_file_name
-      row :image do
-        image_tag(feedback.avatar.url(:square))
+      row :error_reported_at
+      row :order_note
+      row :order_number
+      feedback.uploads.each do |upload|
+        row "image_name" do
+          upload.avatar_file_name
+        end 
+        row :image do
+          image_tag(upload.avatar.url(:square))
+        end
+
       end
       row :created_at
     end

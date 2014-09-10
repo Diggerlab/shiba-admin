@@ -18,17 +18,8 @@ ActiveAdmin.register Notice do
     f.inputs "結束時間" do
       f.input :closed_at
     end
-    f.inputs "content_en" do
-      f.kindeditor :content_en, :owner_id => current_admin_user.id, filterMode: false
-    end
-    f.inputs "content_zh" do
-      f.kindeditor :content_zh, :owner_id => current_admin_user.id, filterMode: false
-    end
-    f.inputs "content_jp" do
-     f.kindeditor :content_jp, :owner_id => current_admin_user.id, filterMode: false
-    end
-    f.inputs "content_tw" do
-      f.kindeditor :content_tw, :owner_id => current_admin_user.id, filterMode: false
+    f.inputs "content" do
+      f.kindeditor :content, :owner_id => current_admin_user.id, filterMode: false
     end
     f.input :admin_user_id, as: 'hidden', value: current_admin_user.id
     f.actions

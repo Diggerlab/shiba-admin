@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901172316) do
-
-  create_table "accounts", force: true do |t|
-    t.string   "vc1",        default: ""
-    t.string   "vc2",        default: ""
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
+ActiveRecord::Schema.define(version: 20140910125316) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -57,72 +47,40 @@ ActiveRecord::Schema.define(version: 20140901172316) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "feedbacks", force: true do |t|
-    t.string   "user_code"
-    t.string   "content"
+    t.string   "uid",               limit: 20
+    t.string   "content",           limit: 2000
     t.string   "email"
-    t.datetime "bug_happen"
+    t.string   "order_number"
+    t.string   "order_note"
     t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.datetime "order_paid_at"
+    t.datetime "error_reported_at"
   end
 
-  create_table "gacha_histories", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "gacha_prize_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "gacha_histories", ["gacha_prize_id"], name: "index_gacha_histories_on_gacha_prize_id", using: :btree
-  add_index "gacha_histories", ["user_id"], name: "index_gacha_histories_on_user_id", using: :btree
-
-  create_table "gacha_prizes", force: true do |t|
-    t.integer  "hero_id"
-    t.integer  "count",      default: 1
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "gacha_prizes", ["hero_id"], name: "index_gacha_prizes_on_hero_id", using: :btree
-  add_index "gacha_prizes", ["user_id"], name: "index_gacha_prizes_on_user_id", using: :btree
-
-  create_table "heros", force: true do |t|
-    t.string   "name",       default: ""
-    t.string   "rank",       default: ""
-    t.string   "state",      default: ""
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "feedbacks", ["uid"], name: "index_feedbacks_on_uid", using: :btree
 
   create_table "notices", force: true do |t|
     t.integer  "admin_user_id"
-    t.text     "content_en"
-    t.text     "content_zh"
-    t.text     "content_jp"
-    t.text     "content_tw"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.boolean  "enabled"
+    t.text     "content"
+    t.string   "title"
+    t.datetime "published_at"
+    t.datetime "closed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "notices", ["admin_user_id"], name: "index_notices_on_admin_user_id", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "uid",                  limit: 40, default: ""
-    t.string   "password",             limit: 40, default: ""
-    t.string   "authentication_token", limit: 40, default: ""
-    t.datetime "migrated_at"
+  create_table "uploads", force: true do |t|
+    t.integer  "feedback_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
-  add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
+  add_index "uploads", ["feedback_id"], name: "index_uploads_on_feedback_id", using: :btree
 
 end
