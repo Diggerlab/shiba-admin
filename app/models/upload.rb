@@ -1,8 +1,8 @@
 class Upload < ActiveRecord::Base
   belongs_to :feedback
-  BUCKET = Rails.application.secrets[:bucket]
-  ACCESSKET = Rails.application.secrets[:access_key_id]
-  SECRETKEY = Rails.application.secrets[:secret_access_key]
+  BUCKET = ENV['BUCKET']
+  ACCESSKET = ENV['KEY_ID']
+  SECRETKEY = ENV['SECRET_KEY']
   
   has_attached_file :avatar, styles: {
     thumb: '100x100>',
