@@ -1,6 +1,5 @@
 ActiveAdmin.register Notice do
-  permit_params :title, :published_at, :closed_at, :content_en, :content_zh, :content_jp, 
-  :content_tw, :admin_user_id
+  permit_params :title, :published_at, :closed_at, :content, :admin_user_id
   menu label: 'Notices', parent: 'Operation'
   index  do                   
     column "結束時間",:closed_at     
